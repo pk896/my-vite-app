@@ -1,7 +1,92 @@
+/* my-vite-app/src/vite-payout.css - enhanced with animations */
+
+/* Global body */
 body {
     margin: 0;
     display: flex;
-    place-items: center;
+    justify-content: center;
+    align-items: center;
     min-width: 320px;
     min-height: 100vh;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #fff;
+    overflow-x: hidden;
+    animation: backgroundFade 10s ease-in-out infinite alternate;
+}
+
+/* Smooth background animation */
+@keyframes backgroundFade {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+body {
+    background-size: 200% 200%;
+}
+
+/* Container animation for payout content */
+.payout-container {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 40px 60px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    backdrop-filter: blur(10px);
+    animation: fadeInUp 1s ease-out forwards;
+    opacity: 0;
+}
+
+/* Fade-in & move-up animation */
+@keyframes fadeInUp {
+    0% {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Headings inside container */
+.payout-container h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #fff;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+}
+
+/* Buttons inside container */
+.payout-container button {
+    background-color: #ff6b6b;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-size: 1rem;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.payout-container button:hover {
+    transform: scale(1.05);
+    background-color: #ff4757;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+    .payout-container {
+        padding: 30px 20px;
+        border-radius: 15px;
+    }
+    .payout-container h1 {
+        font-size: 1.5rem;
+    }
+    .payout-container button {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
 }
