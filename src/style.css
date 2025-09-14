@@ -1,6 +1,8 @@
-/* style.css for e-commerce - high-class animations */
+/* ===============================
+   style.css - High-Class E-Commerce
+   =============================== */
 
-/* Global settings */
+/* --- Global Settings --- */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f9f9f9;
@@ -10,7 +12,26 @@ body {
     overflow-x: hidden;
 }
 
-/* Product grid */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* --- Headings --- */
+h1, .h1 {
+    color: #5a2cae;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 20px;
+    animation: titleFade 1s ease-out;
+}
+@keyframes titleFade {
+    0% { opacity: 0; transform: translateY(-20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Product Grid --- */
 .grid-products-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -19,7 +40,7 @@ body {
     background-color: #f2f2f2;
 }
 
-/* Individual product card */
+/* --- Product Card --- */
 .product-card {
     background-color: #fff;
     border-radius: 12px;
@@ -29,55 +50,43 @@ body {
     transform: translateY(20px);
     opacity: 0;
     animation: fadeInUp 0.6s forwards;
-    animation-delay: 0.2s;
+    animation-delay: var(--delay, 0s);
     transition: transform 0.3s, box-shadow 0.3s;
 }
 .product-card:hover {
     transform: translateY(-5px) scale(1.02);
     box-shadow: 0 8px 20px rgba(0,0,0,0.2);
 }
-
-/* Staggered animation for multiple cards */
-.product-card:nth-child(1) { animation-delay: 0.1s; }
-.product-card:nth-child(2) { animation-delay: 0.2s; }
-.product-card:nth-child(3) { animation-delay: 0.3s; }
-/* Add more if needed */
-
-/* Fade-in & move-up animation */
 @keyframes fadeInUp {
-    0% {
-        transform: translateY(20px);
-        opacity: 0;
-    }
-    100% {
-        transform: translateY(0);
-        opacity: 1;
-    }
+    0% { transform: translateY(20px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
 }
 
-/* Product titles */
-h1, .h1 {
-    color: #5a2cae;
-    font-size: 2rem;
-    text-align: center;
-    margin-bottom: 20px;
-    animation: titleFade 1s ease-out;
+/* --- Staggered Animation for Products --- */
+.product-card:nth-child(n) {
+    --delay: calc(0.1s * (n - 1));
 }
 
-@keyframes titleFade {
-    0% { opacity: 0; transform: translateY(-20px); }
-    100% { opacity: 1; transform: translateY(0); }
+/* --- Buttons --- */
+button {
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-weight: 600;
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
 
-/* Add to cart button */
+/* --- Add to Cart Button --- */
 .add-to-cart {
     background-color: #5a2cae;
     color: #fff;
-    font-weight: 600;
-    border: none;
     border-radius: 50px;
     padding: 10px 20px;
-    cursor: pointer;
     transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
 }
 .add-to-cart:hover {
@@ -86,34 +95,31 @@ h1, .h1 {
     box-shadow: 0 8px 20px rgba(0,0,0,0.25);
 }
 
-/* Cart wrapper */
-.cart-wrapper {
-    background-color: #1e90ff;
-    padding: 20px;
-    border-radius: 12px;
-    color: #fff;
-    margin: 20px 0;
-    animation: fadeIn 1s ease-out;
-}
-
-/* Fade-in animation */
-@keyframes fadeIn {
-    0% { opacity: 0; transform: translateY(10px); }
-    100% { opacity: 1; transform: translateY(0); }
-}
-
-/* Cart quantity */
-.cart-quantity {
+/* --- Cart Quantity Badge --- */
+.js-cart-quantity {
+    display: inline-block;
+    min-width: 24px;
+    text-align: center;
+    background: #ff4757;
+    border-radius: 50%;
+    padding: 2px 6px;
     font-weight: bold;
     color: #fff;
-    font-size: 1.2rem;
     transition: transform 0.3s;
 }
-.cart-quantity:hover {
+.js-cart-quantity:hover {
     transform: scale(1.2);
 }
+.cart-badge-pop {
+    animation: pop 0.3s ease;
+}
+@keyframes pop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.5); }
+    100% { transform: scale(1); }
+}
 
-/* Cart image */
+/* --- Cart Image --- */
 .cart-img {
     width: 40px;
     height: 40px;
@@ -124,16 +130,82 @@ h1, .h1 {
     transform: rotate(10deg) scale(1.1);
 }
 
-/* Cart summary */
-.cart-summary {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    row-gap: 20px;
-    column-gap: 30px;
-    padding-left: 20px;
+/* --- Checkout / Cart Summary --- */
+.checkout-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+.checkout-left {
+    flex: 2;
+    min-width: 300px;
+}
+.checkout-right {
+    flex: 1;
+    min-width: 250px;
+    background-color: #f7f7f7;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.checkout-left h2,
+.checkout-right h2 {
+    margin-bottom: 1rem;
 }
 
-/* Links with hover effect */
+/* Checkout items */
+.checkout-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    border-bottom: 1px solid #ddd;
+    padding: 0.75rem 0;
+    transform: translateY(20px);
+    opacity: 0;
+    animation: fadeInUp 0.6s forwards;
+}
+.checkout-img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+.checkout-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+.checkout-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.checkout-actions button {
+    padding: 0.25rem 0.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background: #eee;
+}
+.checkout-actions button:hover {
+    background: #ddd;
+}
+
+/* Payment Summary */
+.checkout-total {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 2px solid #333;
+    text-align: right;
+    font-size: 1.1rem;
+}
+#paypal-button-container {
+    margin-top: 1.5rem;
+}
+
+/* --- Links --- */
 .delete-link,
 .update-span,
 .home-link {
@@ -149,16 +221,280 @@ h1, .h1 {
     transform: scale(1.05);
 }
 
-/* Misc enhancements */
-img {
-    max-width: 100%;
-    border-radius: 8px;
-    transition: transform 0.3s;
+/* --- Proceed Button --- */
+.proceed-btn {
+    margin-top: 1rem;
+    width: 100%;
+    padding: 0.75rem 1.5rem;
+    background-color: #0070f3;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s;
 }
-img:hover {
+.proceed-btn:hover {
+    background-color: #005bb5;
     transform: scale(1.03);
 }
 
-button:focus {
-    outline: none;
+/* --- Weather Card --- */
+.weather-card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    padding: 15px;
+    margin-bottom: 20px;
+    text-align: center;
+    transform: translateY(20px);
+    opacity: 0;
+    animation: fadeInUp 0.6s forwards;
 }
+
+/* --- Fade-in Utility --- */
+.fade-in {
+    transform: translateY(20px);
+    opacity: 0;
+    animation: fadeInUp 0.6s forwards;
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+    .checkout-container {
+        flex-direction: column;
+    }
+}
+
+/* --- Subtle Animations --- */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+button:hover {
+    animation: bounce 0.3s;
+}
+
+/* ===============================
+   Mini-Cart Dropdown
+   =============================== */
+.mini-cart {
+    position: relative;
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.js-cart-toggle {
+    display: flex;
+    align-items: center;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    position: relative;
+}
+
+.js-cart-toggle .cart-img {
+    width: 40px;
+    height: 40px;
+    transition: transform 0.3s;
+}
+.js-cart-toggle:hover .cart-img {
+    transform: rotate(15deg) scale(1.1);
+}
+
+.js-cart-dropdown {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    width: 300px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    padding: 15px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: opacity 0.3s, transform 0.3s;
+}
+.js-cart-dropdown.hidden {
+    display: none;
+}
+
+.js-cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.js-cart-item button {
+    background-color: #f2f2f2;
+    color: #333;
+    border-radius: 6px;
+    padding: 2px 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+.js-cart-item button:hover {
+    background-color: #ddd;
+    transform: scale(1.1);
+}
+
+.js-cart-total {
+    font-weight: bold;
+    text-align: right;
+    margin-top: 5px;
+    border-top: 1px solid #ccc;
+    padding-top: 5px;
+}
+
+.js-cart-clear {
+    margin-top: 10px;
+    background-color: #ff4757;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+.js-cart-clear:hover {
+    background-color: #e84118;
+    transform: scale(1.05);
+}
+
+.checkout-link {
+    display: block;
+    text-align: center;
+    margin-top: 8px;
+    padding: 8px 10px;
+    background-color: #5a2cae;
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s, transform 0.2s;
+}
+.checkout-link:hover {
+    background-color: #7d3cff;
+    transform: scale(1.05);
+}
+
+/* Responsive Mini-Cart */
+@media (max-width: 768px) {
+    .js-cart-dropdown {
+        right: -10px;
+        width: 250px;
+    }
+    .mini-cart {
+        margin-left: 10px;
+    }
+}
+
+/* Slide-down animation for mini-cart dropdown */
+.js-cart-dropdown {
+    opacity: 0;
+    transform: translateY(-20px);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.js-cart-dropdown.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* Smooth fade-in and fade-out for mini-cart */
+.js-cart-dropdown {
+    opacity: 0;
+    transform: translateY(-20px);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.js-cart-dropdown.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* Optional: smoother closing animation */
+.js-cart-dropdown.hide {
+    opacity: 0;
+    transform: translateY(-20px);
+    pointer-events: none;
+}
+
+.product-img {
+  width: 150px;   /* or any size you like */
+  height: auto;   /* maintain aspect ratio */
+  object-fit: cover; /* keeps image proportion and crops if needed */
+  border-radius: 8px; /* optional rounded corners */
+}
+
+.product-img {
+  width: 150px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, filter 0.4s ease;
+}
+
+/* Hover effect */
+.product-img:hover {
+  transform: scale(1.1) rotate(2deg); /* zoom in slightly + slight tilt */
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2); /* soft shadow */
+  filter: brightness(1.1); /* a little brightness pop */
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+  100% { transform: translateY(0px); }
+}
+
+.product-img {
+  animation: float 4s ease-in-out infinite;
+}
+
+.product {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Subtotal / Total pop animation */
+.pop-animation {
+  display: inline-block;
+  transform: scale(1);
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.pop-animation.animate {
+  transform: scale(1.3);
+  color: #27ae60; /* green highlight */
+}
+
+/* Highlight animation for delivery selector */
+.js-delivery-select.highlight {
+  animation: highlightPop 0.5s ease-in-out;
+}
+
+@keyframes highlightPop {
+  0% { transform: scale(1); background-color: #fff; }
+  50% { transform: scale(1.1); background-color: #fffa8b; }
+  100% { transform: scale(1); background-color: #fff; }
+}
+

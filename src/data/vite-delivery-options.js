@@ -1,25 +1,15 @@
-import { updatePayments } from "../checkout/payment-summary";
+/* data/vite-delivery-options.js */
 
-export const deliveryOptions = [{
-    deliveryDays: 7,
-    prizeCents: 1000,
-    deliveryOptionsId: '1' 
-}, {
-    deliveryDays: 3,
-    prizeCents: 500,
-    deliveryOptionsId: '2'
-}, {
-    deliveryDays: 1,
-    prizeCents: 0,
-    deliveryOptionsId: '3'
-}];
-export function getDeliveryOptionById(deliveryId) {
-    let matchingItem = '';
-    deliveryOptions.forEach((option) => {
-        if (option.deliveryOptionsId === deliveryId) {
-            matchingItem = option;
-        }
-    });
-    return matchingItem;
-};
+// Define all delivery options with consistent naming
+export const deliveryOptions = [
+    { id: '1', name: 'Standard', deliveryDays: 7, priceCents: 1000 },
+    { id: '2', name: 'Express', deliveryDays: 3, priceCents: 500 },
+    { id: '3', name: 'Next Day', deliveryDays: 1, priceCents: 0 }
+];
+
+// Get a delivery option by its id
+export function getDeliveryOptionById(id) {
+    return deliveryOptions.find(option => option.id === id) || null;
+}
+
 

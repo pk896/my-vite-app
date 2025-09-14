@@ -1,24 +1,46 @@
-<!doctype html>
+<!-- index.html -->
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pk E-commerce</title>
-    <link rel="stylesheet" href="/src/style.css" />
-  </head>
-  <body>
-    <h1 class="h1">wilcome to Phakisi e-commerce</h1>
-    <li><a href="">customer benefits</a></li>
-    <li><a href="">about Phakisi e-commerce</a></li>
-    <a href="/pages/vite-checkout.html">
-        <span class="cart js-cart">
-            <img class="cart-img" src="/src/data/vite-images/shopping-cart.webp" alt="cart img">
-            <span class="js-cart-quantity"></span></span></a>
-       
-    <div>
-        <div class="js-grid-products-container grid-products-container"></div>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pk E-commerce</title>
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="main-header">
+    <h1 class="h1">Welcome to Phakisi E-commerce</h1>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#">Customer Benefits</a></li>
+        <li><a href="#">About Phakisi E-commerce</a></li>
+      </ul>
+    </nav>
+
+    <!-- Cart with dropdown -->
+    <div class="mini-cart">
+      <button class="js-cart-toggle">
+        <img class="cart-img" src="/src/data/html-icons/cart-icon-22-removebg-preview (3).png" alt="Cart" />
+        <span class="js-cart-quantity">[0]</span><span><a href="/pages/vite-checkout.html">Go to Checkout</a></span>
+      </button>
+      <div class="js-cart-dropdown hidden">
+        <div class="js-cart-items"></div>
+        <div class="js-cart-total"></div>
+        <button class="js-cart-clear">Clear Cart</button>
+      </div>
     </div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+  </header>
+
+  <!-- Product Grid -->
+  <main>
+    <div class="grid-products-container js-grid-products-container">
+      <!-- Products injected dynamically by main.js -->
+    </div>
+  </main>
+
+  <!-- Scripts -->
+  <script type="module" src="/src/main.js"></script>
+</body>
 </html>

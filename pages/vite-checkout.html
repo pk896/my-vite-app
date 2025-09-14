@@ -1,18 +1,42 @@
+<!-- vite-checkout.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>checkout</title>
-    <link rel="stylesheet" href="/src/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout</title>
+  <link rel="stylesheet" href="/src/style.css">
 </head>
 <body>
-    <div><h1 class="h1">checkout page</h1>
-        <br>
-        <div class="js-weather"></div>
-        <span><a href="amazon-fruids.html">back to home page</a></span></div>
-        <div class="js-payment-summary payment-summary"></div>
-<div class="js-cart-summary cart-summary"></div>
-<script type="module" src="/src/vite-checkout.js"></script>
+  <h1 class="h1">Checkout Page</h1>
+
+  <!-- Weather -->
+  <div class="js-weather weather-container">
+    <p>Loading weather...</p>
+  </div>
+
+  <!-- Back to home -->
+  <a class="home-link" href="/index.html">← Back to Home Page</a>
+
+  <!-- Checkout layout: side by side -->
+  <div class="checkout-container">
+
+    <!-- Left: Order Summary -->
+    <div class="checkout-left">
+      <h2>Order Summary</h2>
+      <div id="order-summary" class="js-cart-summary"></div>
+    </div>
+
+    <!-- Right: Payment Summary + PayPal -->
+    <div class="checkout-right">
+      <h2>Payment Summary</h2>
+      <div id="payment-summary" class="js-payment-summary"></div>
+      <div id="paypal-button-container"></div>
+    </div>
+
+  </div>
+
+  <!-- Scripts -->
+  <script type="module" src="/src/vite-checkout.js"></script>
 </body>
 </html>
