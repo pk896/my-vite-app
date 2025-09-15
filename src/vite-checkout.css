@@ -1,3 +1,110 @@
+/* --- Global Settings (Shining Gradient) --- */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    overflow-x: hidden;
+
+    /* Shining animated gradient background */
+    background: linear-gradient(270deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1, #ffecd2, #fcb69f);
+    background-size: 1000% 1000%;
+    animation: gradientWave 25s ease infinite;
+}
+
+/* --- Animations for Gradient --- */
+@keyframes gradientWave {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* --- Remove / Clear Cart Button More Visible --- */
+.js-remove-item {
+    margin-top: 10px;
+    background-color: #4b0405; /* stronger red */
+    color: black;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+}
+.js-remove-item:hover {
+    background-color: #d06060; /* darker red on hover */
+    color: rgb(120, 11, 11);
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(127, 10, 10, 0.25);
+}
+
+/* --- Payment Summary Container --- */
+.payment-summary {
+    background: #fdfdfd; /* subtle off-white for clarity */
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    padding: 20px 25px;
+    max-width: 400px;
+    margin: 20px auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.payment-summary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+/* --- Heading --- */
+.payment-summary h3 {
+    font-size: 1.6rem;
+    color: #0d3b66; /* trust blue */
+    margin-bottom: 15px;
+    border-bottom: 2px solid #0d3b66;
+    padding-bottom: 5px;
+}
+
+/* --- Paragraphs --- */
+.payment-summary p {
+    font-size: 1.1rem;
+    margin: 8px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3px 0;
+    border-radius: 6px;
+    transition: background-color 0.3s;
+}
+
+.payment-summary p:hover {
+    background-color: #f0f7ff; /* light blue hover */
+}
+
+/* --- Highlight Grand Total --- */
+.payment-summary p b {
+    font-size: 1.3rem;
+    color: #27ae60; /* green for positive action */
+}
+
+/* --- Horizontal line --- */
+.payment-summary hr {
+    border: none;
+    border-top: 2px solid #eee;
+    margin: 15px 0;
+}
+
+/* --- Optional subtle animation --- */
+.payment-summary {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+
 /* ===============================
    style.css - High-Class E-Commerce
    =============================== */
@@ -7,19 +114,7 @@
    style.css - High-Class E-Commerce (Responsive + Animated)
    =============================== */
 
-/* --- Global Settings --- */
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 0;
-    color: #333;
-    overflow-x: hidden;
 
-    /* Animated gradient background */
-    background: linear-gradient(270deg, #ff9a9e, #fad0c4, #a18cd1, #fbc2eb);
-    background-size: 800% 800%;
-    animation: gradientWave 20s ease infinite;
-}
 
 /* --- Main container --- */
 main {
@@ -33,18 +128,23 @@ main {
 
 /* --- Headings --- */
 h1, .h1 {
-    color: #5a2cae;
     font-size: 3rem;
     font-weight: 800;
     text-align: center;
     margin-bottom: 40px;
     letter-spacing: 2px;
     text-transform: uppercase;
+
+    /* Gradient text */
     background: linear-gradient(90deg, #ff6a00, #ee0979);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    background-clip: text;       /* standard property */
+    -webkit-background-clip: text; /* for Chrome/Safari */
+    color: transparent;          /* fallback for non-supporting browsers */
+    -webkit-text-fill-color: transparent; /* for Chrome/Safari */
+
     animation: titleBounce 1.5s ease-out;
 }
+
 
 /* --- Navigation --- */
 nav ul {
@@ -178,33 +278,9 @@ button:hover {
 
 
 
-/*body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f9f9f9;
-    margin: 0;
-    padding: 0;
-    color: #333;
-    overflow-x: hidden;
-}
 
-main {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-}
 
-/* --- Headings --- */
-h1, .h1 {
-    color: #5a2cae;
-    font-size: 2rem;
-    text-align: center;
-    margin-bottom: 20px;
-    animation: titleFade 1s ease-out;
-}
-@keyframes titleFade {
-    0% { opacity: 0; transform: translateY(-20px); }
-    100% { opacity: 1; transform: translateY(0); }
-}*/
+
 
 /* --- Product Grid --- */
 .grid-products-container {

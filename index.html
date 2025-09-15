@@ -12,18 +12,33 @@
   <!-- Header -->
   <header class="main-header">
     <h1 class="h1">Welcome to Phakisi E-commerce</h1>
+
+    <!-- Navigation -->
     <nav>
       <ul class="nav-links">
         <li><a href="#">Customer Benefits</a></li>
-        <li><a href="#">About Phakisi E-commerce</a></li>
+        <li><a href="/vite-about.html">About Phakisi E-commerce</a></li>
       </ul>
     </nav>
+    <section class="why-choose-us">
+  <h2>Why Choose Us?</h2>
+  <ul>
+    <li><span class="icon">✔</span> Trusted and experienced team</li>
+    <li><span class="icon">✔</span> High-quality products</li>
+    <li><span class="icon">✔</span> Customer-first approach</li>
+  </ul>
+</section>
 
-    <!-- Cart with dropdown -->
+    <!-- Mini Cart -->
     <div class="mini-cart">
       <button class="js-cart-toggle">
-        <img class="cart-img" src="/src/data/html-icons/cart-icon-22-removebg-preview (3).png" alt="Cart" />
-        <span class="js-cart-quantity">[0]</span><span><a href="/pages/vite-checkout.html">Go to Checkout</a></span>
+        <img
+          class="cart-img"
+          class="cart-img" src="/src/data/html-icons/cart-icon-22-removebg-preview (3).png" alt="Cart"
+          alt="Cart"
+        />
+        <span class="js-cart-quantity">[0]</span>
+        <span><a href="/vite-checkout.html">Go to Checkout</a></span>
       </button>
       <div class="js-cart-dropdown hidden">
         <div class="js-cart-items"></div>
@@ -33,14 +48,86 @@
     </div>
   </header>
 
-  <!-- Product Grid -->
+  <!-- Main Product Grid -->
   <main>
     <div class="grid-products-container js-grid-products-container">
-      <!-- Products injected dynamically by main.js -->
+      <!-- Products will be injected dynamically via main.js -->
     </div>
   </main>
+  
+  <!--footer.ejs-->
+<footer class="site-footer" style="border-top:1px solid #eee; background:#fff; margin-top:2rem;">
+  <div style="max-width:1100px; margin:0 auto; padding:1rem;">
+    <p style="margin:0; color:#555; font-size:0.95rem;">
+      <span><span id="year-for-footer">2025.</span>Phakisi e-commerce. All rights reserved.</span>
+    </p>
+  </div>
+</footer>
 
   <!-- Scripts -->
   <script type="module" src="/src/main.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- index.html -->
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pk E-commerce</title>
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+  !-- Header -->
+  <!--<header class="main-header">
+    <h1 class="h1">Welcome to Phakisi E-commerce</h1>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#">Customer Benefits</a></li>
+        <li><a href="#">About Phakisi E-commerce</a></li>
+      </ul>
+    </nav>
+
+    !-- Cart with dropdown -->
+    <!--<div class="mini-cart">
+      <button class="js-cart-toggle">
+        <img class="cart-img" src="/src/data/html-icons/cart-icon-22-removebg-preview (3).png" alt="Cart" />
+        <span class="js-cart-quantity">[0]</span><span><a href="/vite-checkout.html">Go to Checkout</a></span>
+      </button>
+      <div class="js-cart-dropdown hidden">
+        <div class="js-cart-items"></div>
+        <div class="js-cart-total"></div>
+        <button class="js-cart-clear">Clear Cart</button>
+      </div>
+    </div>
+  </header>
+
+  !-- Product Grid -->
+  <!--<main>
+    <div class="grid-products-container js-grid-products-container">
+      !-- Products injected dynamically by main.js -->
+    <!--</div>
+  </main>
+
+  !-- Scripts -->
+  <!--<script type="module" src="/src/main.js"></script>
+</body>
+</html>
+-->
