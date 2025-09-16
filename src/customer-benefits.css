@@ -1,0 +1,71 @@
+.why-choose-us {
+  padding: 3rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  background: linear-gradient(135deg, #fdfbfb, #ebedee);
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+.why-choose-us h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: #5a2cae;
+}
+
+.why-choose-us p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+.benefits-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.benefit-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.5rem 1rem;
+  width: 220px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.benefit-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+.benefit-card .icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.benefit-card h3 {
+  font-size: 1.2rem;
+  color: #5a2cae;
+  margin-bottom: 0.5rem;
+}
+
+.benefit-card p {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.4;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .benefits-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .benefit-card {
+    width: 80%;
+  }
+}

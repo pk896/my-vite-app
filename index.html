@@ -5,27 +5,282 @@
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pk E-commerce</title>
+  <title>Phakisi E-commerce</title>
   <link rel="stylesheet" href="/src/style.css" />
 </head>
 <body>
   <!-- Header -->
-  <header class="main-header">
-    <h1 class="h1">Welcome to Phakisi E-commerce</h1>
+  <header class="header">
+    <div class="brand">
+      <h1 class="h1">Phakisi E-commerce</h1>
+    </div>
+
+    <!-- Hamburger Menu for Mobile -->
+    <button class="hamburger js-hamburger" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
 
     <!-- Navigation -->
-    <nav>
+    <nav class="nav js-nav">
+      <a href="/Customer-benefits.html">Customer Benefits</a>
+      <a href="/vite-about.html">About Us</a>
+    </nav>
+
+    <!-- Mini Cart -->
+    <div class="mini-cart">
+      <button class="js-cart-toggle" aria-label="Open cart">
+        <a href="/vite-checkout.html"><img
+          class="cart-img"
+          class="cart-img" src="/src/data/html-icons/cart-icon-22-removebg-preview (3).png" alt="Cart"
+          alt="Cart"
+        /></a>
+       
+        <span class="js-cart-quantity">[0]</span>
+      </button>
+      <a href="/vite-checkout.html" class="checkout-float-btn">Go to checkout</a>
+      <div class="js-cart-dropdown">
+        <div class="js-cart-items"></div>
+        <div class="js-cart-total"></div>
+        <button class="btn btn-outline js-cart-clear">Clear Cart</button>
+        <a href="/vite-checkout.html" class="btn btn-primary">Go to Checkout</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Featured Products Slider -->
+  <section class="featured-slider">
+    <h2>Special Offers</h2>
+    <div class="slider-track js-slider-track">
+      <!-- Placeholder slider items -->
+      <div class="slider-item">
+        <img src="https://via.placeholder.com/150" alt="Slider Item 1">
+        <p>Special Product 1</p>
+        <p class="price">$29.99</p>
+        <button>Add to Cart</button>
+      </div>
+      <div class="slider-item">
+        <img src="https://via.placeholder.com/150" alt="Slider Item 2">
+        <p>Special Product 2</p>
+        <p class="price">$39.99</p>
+        <button>Add to Cart</button>
+      </div>
+      <div class="slider-item">
+        <img src="https://via.placeholder.com/150" alt="Slider Item 3">
+        <p>Special Product 3</p>
+        <p class="price">$49.99</p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="why-choose-us">
+    <h2>Why Choose Us?</h2>
+    <ul>
+      <li><span class="icon">✔</span> Trusted and experienced team</li>
+      <li><span class="icon">✔</span> High-quality products</li>
+      <li><span class="icon">✔</span> Customer-first approach</li>
+    </ul>
+  </section>
+
+  <!-- Main Product Grid -->
+  <main>
+    <div class="grid-products-container js-grid-products-container">
+      <!-- Placeholder products -->
+      <div class="product-card">
+        <img class="product-img" src="https://via.placeholder.com/150" alt="Product 1">
+        <p>Product 1</p>
+        <p class="price">$19.99</p>
+        <button>Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img class="product-img" src="https://via.placeholder.com/150" alt="Product 2">
+        <p>Product 2</p>
+        <p class="price">$24.99</p>
+        <button>Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img class="product-img" src="https://via.placeholder.com/150" alt="Product 3">
+        <p>Product 3</p>
+        <p class="price">$34.99</p>
+        <button>Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img class="product-img" src="https://via.placeholder.com/150" alt="Product 4">
+        <p>Product 4</p>
+        <p class="price">$44.99</p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p>
+        <span id="year-for-footer">2025</span> © Phakisi E-commerce. All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script type="module" src="/src/main.js"></script>
+
+  <!-- Hamburger toggle script -->
+  <script>
+    const hamburger = document.querySelector(".js-hamburger");
+    const nav = document.querySelector(".js-nav");
+
+    if (hamburger && nav) {
+      hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("active");
+        nav.classList.toggle("open");
+      });
+    }
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- index.html -->
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pk E-commerce</title>
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+  !-- Header -->
+  <!--<header class="header">
+    <div class="brand">
+      <h1 class="h1">Phakisi E-commerce</h1>
+    </div>
+
+    !-- Navigation -->
+    <!--<nav class="nav">
+      <a href="#">Customer Benefits</a>
+      <a href="/vite-about.html">About Us</a>
+    </nav>
+
+    !-- Mini Cart -->
+    <!--<div class="mini-cart">
+      <button class="js-cart-toggle" aria-label="Open cart">
+        <img
+          class="cart-img"
+          src="/src/data/html-icons/cart-icon-22-removebg-preview (3).png"
+          alt="Cart"
+        />
+        <span class="js-cart-quantity">[0]</span>
+      </button>
+      <div class="js-cart-dropdown">
+        <div class="js-cart-items"></div>
+        <div class="js-cart-total"></div>
+        <button class="btn btn-outline js-cart-clear">Clear Cart</button>
+        <a href="/vite-checkout.html" class="btn btn-primary" style="margin-top:8px;">Go to Checkout</a>
+      </div>
+    </div>
+  </header>
+
+  !-- Featured Products Slider -->
+  <!--<section class="ad-slider">
+    <h2>Special Offers</h2>
+    <div class="slider-track js-slider-track">
+      !-- Products will be injected dynamically -->
+   <!-- </div>
+  </section>
+
+  !-- Why Choose Us -->
+  <!--<section class="why-choose-us">
+    <h2>Why Choose Us?</h2>
+    <ul>
+      <li><span class="icon">✔</span> Trusted and experienced team</li>
+      <li><span class="icon">✔</span> High-quality products</li>
+      <li><span class="icon">✔</span> Customer-first approach</li>
+    </ul>
+  </section>
+
+  !-- Main Product Grid -->
+  <!--<main>
+    <div class="grid-products-container js-grid-products-container">
+      !-- Products will be injected dynamically via main.js -->
+    <!--</div>
+  </main>
+
+  !-- Footer -->
+<!--<footer class="site-footer">
+    <div class="footer-inner">
+      <p>
+        <span id="year-for-footer">2025</span> © Phakisi E-commerce. All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+  !-- Scripts -->
+  <!--<script type="module" src="/src/main.js"></script>
+</body>
+</html>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- index.html -->
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pk E-commerce</title>
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+  !-- Header -->
+  <!--<header class="main-header">
+    <h1 class="h1">Welcome to Phakisi E-commerce</h1>
+
+    !-- Navigation -->
+    <!--<nav>
       <ul class="nav-links">
         <li><a href="#">Customer Benefits</a></li>
         <li><a href="/vite-about.html">About Phakisi E-commerce</a></li>
       </ul>
     </nav>
-    <!-- Featured Products Slider -->
-<section class="featured-slider">
+    !-- Featured Products Slider -->
+<!--<section class="featured-slider">
   <h2>Special Offers</h2>
   <div class="slider-track js-slider-track">
-    <!-- Products will be injected dynamically -->
-  </div>
+    !-- Products will be injected dynamically -->
+  <!--</div>
 </section>
     <section class="why-choose-us">
   <h2>Why Choose Us?</h2>
@@ -36,8 +291,8 @@
   </ul>
 </section>
 
-    <!-- Mini Cart -->
-    <div class="mini-cart">
+    !-- Mini Cart -->
+    <!--<div class="mini-cart">
       <button class="js-cart-toggle">
         <img
           class="cart-img"
@@ -55,15 +310,15 @@
     </div>
   </header>
 
-  <!-- Main Product Grid -->
-  <main>
+  !-- Main Product Grid -->
+  <!--<main>
     <div class="grid-products-container js-grid-products-container">
-      <!-- Products will be injected dynamically via main.js -->
-    </div>
+      !-- Products will be injected dynamically via main.js -->
+   <!-- </div>
   </main>
   
-  <!--footer.ejs-->
-<footer class="site-footer" style="border-top:1px solid #eee; background:#fff; margin-top:2rem;">
+  !--footer.ejs-->
+<!--<footer class="site-footer" style="border-top:1px solid #eee; background:#fff; margin-top:2rem;">
   <div style="max-width:1100px; margin:0 auto; padding:1rem;">
     <p style="margin:0; color:#555; font-size:0.95rem;">
       <span><span id="year-for-footer">2025.</span>Phakisi e-commerce. All rights reserved.</span>
@@ -71,10 +326,10 @@
   </div>
 </footer>
 
-  <!-- Scripts -->
-  <script type="module" src="/src/main.js"></script>
+  !-- Scripts -->
+  <!--<script type="module" src="/src/main.js"></script>
 </body>
-</html>
+</html>-->
 
 
 
