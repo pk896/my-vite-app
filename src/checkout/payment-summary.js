@@ -1,5 +1,284 @@
 // src/checkout/payment-summary.js
-import { cart } from "../data/vite-cart-class.js";
+
+/**
+ * Render PayPal Checkout buttons
+ * @param {Array} cartItems - Array of { productId, name, price, quantity }
+ */
+export function renderPayPalButtons(cartItems = []) {
+  const container = document.getElementById("paypal-buttons-container");
+
+  if (!container) {
+    console.error("❌ PayPal buttons container not found.");
+    return;
+  }
+  if (!window.paypal) {
+    console.error("❌ PayPal SDK not loaded yet.");
+    return;
+  }
+
+  // Reset container
+  container.innerHTML = "";
+
+  // Calculate total (frontend only, backend should verify)
+  const total = cartItems
+    .reduce((sum, item) => sum + item.price * item.quantity, 0)
+    .toFixed(2);
+
+  const API_BASE = "https://my-express-server-rq4a.onrender.com"; // <-- Replace with your Render backend URL
+
+  paypal
+    .Buttons({
+      style: {
+        layout: "vertical",
+        color: "blue",
+        shape: "rect",
+        label: "paypal",
+      },
+
+      // ✅ Create PayPal order (via backend)
+      createOrder: async () => {
+        try {
+          const res = await fetch(`${API_BASE}/payment/create-order`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            credentials: "include",
+            body: JSON.stringify({ amount: total }),
+          });
+
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          const data = await res.json();
+          return data.id; // PayPal order ID
+        } catch (err) {
+          console.error("❌ Create Order error:", err);
+          alert("Failed to start PayPal checkout. Please try again.");
+          throw err;
+        }
+      },
+
+      // ✅ Capture PayPal order (via backend)
+      onApprove: async (data) => {
+        try {
+          const res = await fetch(`${API_BASE}/payment/capture-order`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            credentials: "include",
+            body: JSON.stringify({ orderID: data.orderID }),
+          });
+
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          const details = await res.json();
+
+          alert(`🎉 Payment successful! Thank you, ${details.payer?.name?.given_name || "customer"}.`);
+
+          // ✅ Clear the cart in backend session
+          await fetch(`${API_BASE}/api/cart/clear`, { method: "POST", credentials: "include" });
+
+          // Optionally clear frontend display too
+          const summaryContainer = document.getElementById("order-summary");
+          if (summaryContainer) summaryContainer.innerHTML = "<p>Your cart is empty.</p>";
+
+          const totalElement = document.getElementById("total-amount");
+          if (totalElement) totalElement.textContent = "0.00";
+
+        } catch (err) {
+          console.error("❌ Capture Order error:", err);
+          alert("Something went wrong capturing the PayPal order.");
+        }
+      },
+
+      onError: (err) => {
+        console.error("❌ PayPal Checkout error:", err);
+        alert("Something went wrong with PayPal checkout. Please try again.");
+      },
+    })
+    .render(container);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+// src/checkout/payment-summary.js
+/*
+/**
+ * Render PayPal Checkout buttons
+ * @param {Array} cartItems - Array of { id, name, price, quantity }
+ */
+/*export function renderPayPalButtons(cartItems = []) {
+  const container = document.getElementById("paypal-buttons-container");
+
+  if (!container) {
+    console.error("❌ PayPal buttons container not found.");
+    return;
+  }
+  if (!window.paypal) {
+    console.error("❌ PayPal SDK not loaded yet.");
+    return;
+  }
+
+  // Reset container
+  container.innerHTML = "";
+
+  // Calculate total amount on frontend (for display) — backend will verify
+  const total = cartItems
+    .reduce((sum, item) => sum + item.price * item.quantity, 0)
+    .toFixed(2);
+
+  paypal
+    .Buttons({
+      style: {
+        layout: "vertical",
+        color: "blue",
+        shape: "rect",
+        label: "paypal",
+      },
+
+      // ✅ Create PayPal order (via backend)
+      createOrder: async () => {
+        try {
+          const res = await fetch("/payment/create-order", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ amount: total }),
+          });
+
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          const data = await res.json();
+
+          return data.id; // PayPal order ID
+        } catch (err) {
+          console.error("❌ Create Order error:", err);
+          alert("Failed to start PayPal checkout. Please try again.");
+          throw err;
+        }
+      },
+
+      // ✅ Capture PayPal order (via backend)
+      onApprove: async (data) => {
+        try {
+          const res = await fetch("/payment/capture-order", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ orderID: data.orderID }),
+          });
+
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          const details = await res.json();
+
+          alert(`🎉 Payment successful! Thank you, ${details.payer?.name?.given_name || "customer"}.`);
+
+          // TODO: call backend to clear session cart
+          // e.g. await fetch("/cart/clear", { method: "POST" });
+
+        } catch (err) {
+          console.error("❌ Capture Order error:", err);
+          alert("Something went wrong capturing the PayPal order.");
+        }
+      },
+
+      onError: (err) => {
+        console.error("❌ PayPal Checkout error:", err);
+        alert("Something went wrong with PayPal checkout. Please try again.");
+      },
+    })
+    .render(container);
+}
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// src/checkout/payment-summary.js
+
+/*export function renderPayPalButtons(cartItems = []) {
+  // Ensure PayPal SDK is loaded
+  if (!window.paypal) {
+    console.error("PayPal SDK not loaded yet.");
+    return;
+  }
+
+  // Calculate total amount from cart items
+  const total = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2);
+
+  // Clear any existing buttons
+  const container = document.getElementById("paypal-buttons-container");
+  if (!container) {
+    console.error("PayPal buttons container not found.");
+    return;
+  }
+  container.innerHTML = "";
+
+  // Render PayPal Buttons
+  paypal.Buttons({
+    style: {
+      layout: "vertical",
+      color: "blue",
+      shape: "rect",
+      label: "paypal",
+    },
+    createOrder: function (data, actions) {
+      return actions.order.create({
+        purchase_units: [{
+          amount: {
+            value: total, // total amount for PayPal checkout
+          },
+        }],
+      });
+    },
+    onApprove: function (data, actions) {
+      return actions.order.capture().then(function (details) {
+        alert(`Transaction completed by ${details.payer.name.given_name}!`);
+        // TODO: Call your backend to finalize order and clear cart
+      });
+    },
+    onError: function (err) {
+      console.error("PayPal Checkout error:", err);
+      alert("Something went wrong with PayPal checkout. Please try again.");
+    },
+  }).render(container);
+}
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// src/checkout/payment-summary.js
+/*import { cart } from "../data/vite-cart-class.js";
 import { formatCurrency } from "../utils/vite-money.js";
 
 const API_BASE = "https://my-express-server-rq4a.onrender.com";
@@ -100,7 +379,7 @@ export async function updatePayments() {
 
   await loadPayPalSdk();
   renderPayPalButtons(grandTotal); // always render PayPal after summary
-}
+}*/
 
 
 

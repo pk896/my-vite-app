@@ -1,7 +1,159 @@
+// src/data/vite-cart-class.js
+
+const API_BASE = "https://my-express-server-rq4a.onrender.com/api/cart";
+
+/**
+ * Cart API Client
+ * Handles all cart actions via backend endpoints (session-based).
+ */
+export class CartAPI {
+  constructor() {
+    this.items = [];
+    this.total = 0;
+  }
+
+  /**
+   * Fetch latest cart from backend
+   */
+  async fetchCart() {
+    try {
+      const res = await fetch(API_BASE, { credentials: "include" });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = await res.json();
+      this.items = data.items || [];
+      this.total = data.total || 0;
+      return this;
+    } catch (err) {
+      console.error("❌ Failed to fetch cart:", err);
+      return this;
+    }
+  }
+
+  /**
+   * Add item to cart
+   */
+  async addItem(productId, quantity = 1) {
+    try {
+      const res = await fetch(`${API_BASE}/add`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ productId, quantity }),
+      });
+      const data = await res.json();
+      await this.fetchCart(); // refresh items
+      return data;
+    } catch (err) {
+      console.error("❌ Failed to add item:", err);
+    }
+  }
+
+  /**
+   * Increase quantity
+   */
+  async increase(productId) {
+    try {
+      await fetch(`${API_BASE}/increase`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ productId }),
+      });
+      await this.fetchCart();
+    } catch (err) {
+      console.error("❌ Failed to increase quantity:", err);
+    }
+  }
+
+  /**
+   * Decrease quantity
+   */
+  async decrease(productId) {
+    try {
+      await fetch(`${API_BASE}/decrease`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ productId }),
+      });
+      await this.fetchCart();
+    } catch (err) {
+      console.error("❌ Failed to decrease quantity:", err);
+    }
+  }
+
+  /**
+   * Remove item
+   */
+  async removeItem(productId) {
+    try {
+      await fetch(`${API_BASE}/remove`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ productId }),
+      });
+      await this.fetchCart();
+    } catch (err) {
+      console.error("❌ Failed to remove item:", err);
+    }
+  }
+
+  /**
+   * Clear cart
+   */
+  async clear() {
+    try {
+      await fetch(`${API_BASE}/clear`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+      });
+      await this.fetchCart();
+    } catch (err) {
+      console.error("❌ Failed to clear cart:", err);
+    }
+  }
+
+  // Helpers
+  getItems() {
+    return this.items;
+  }
+
+  getTotalPrice() {
+    return this.total;
+  }
+
+  getTotalQuantity() {
+    return this.items.reduce((sum, i) => sum + i.quantity, 0);
+  }
+}
+
+// Export a singleton instance
+export const cart = new CartAPI();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
  * CartItem represents one item in the cart
  */
-export class CartItem {
+/*export class CartItem {
   constructor(id, name, price, quantity = 1, image = null, deliveryId = null) {
     this.id = id;               // unique product ID
     this.name = name;           // product name
@@ -20,7 +172,7 @@ export class CartItem {
 /**
  * Cart manages all items
  */
-export class Cart {
+/*export class Cart {
   constructor(name = "mainCart") {
     this.name = name;
     this.items = this.load();
@@ -125,7 +277,7 @@ export class Cart {
 }
 
 // ✅ Single shared instance
-export const cart = new Cart("mainCart");
+export const cart = new Cart("mainCart");*/
 
 
 

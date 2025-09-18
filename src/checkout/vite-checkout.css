@@ -688,6 +688,7 @@ button:hover {
   border-radius: 8px; /* optional rounded corners */
 }
 
+.item-img,
 .product-img {
   width: 150px;
   height: auto;

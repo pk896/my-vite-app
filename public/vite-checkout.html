@@ -1,11 +1,11 @@
-<!-- vite-checkout.html -->
+<!-- public/vite-checkout.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Checkout</title>
-  <link rel="stylesheet" href="/src/vite-checkout.css">
+  <link rel="stylesheet" href="src/checkout/vite-checkout.css">
 </head>
 <body>
   <h1 class="h1">Checkout Page</h1>
@@ -38,8 +38,9 @@
     <!-- Right: Payment Summary + PayPal -->
     <div class="checkout-right">
       <h2>Payment Summary</h2>
+      <div id="total-amount"></div>
       <div id="payment-summary" class="js-payment-summary"></div>
-      <div id="paypal-button-container"></div>
+      <div id="paypal-buttons-container"></div>
     </div>
 
   </div>
@@ -55,6 +56,6 @@
 
 
   <!-- Scripts -->
-  <script type="module" src="/src/vite-checkout.js"></script>
+  <script type="module" src="src/checkout/vite-checkout.js"></script>
 </body>
 </html>
